@@ -80,7 +80,7 @@ void setup() {
                .setValue(2)
                .setPosition(xPos, yPos1)
                .setRadius(50)
-               .setColorBackground(colorM)
+               .setColorBackground(color(200, 155, 155))
                .setDragDirection(Knob.HORIZONTAL)
                ;
 
