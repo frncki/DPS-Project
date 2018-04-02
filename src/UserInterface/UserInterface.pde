@@ -28,55 +28,53 @@ void setup() {
   noStroke();
   cam = new PeasyCam(this, 100);
   cp5 = new ControlP5(this);
-  
-  
-  //defaut-simulation tab
-  // By default all controllers are stored inside Tab 'default' 
+
+
+  // defaut-simulation tab
+  // By default all controllers are stored inside Tab 'default'
   // add a second tab with name 'extra'
-  
+
   cp5.addTab("default")
      .setColorBackground(color(0, 160, 100))
      .setColorLabel(color(255))
      .setColorActive(color(255,128,0))
      ;
-     
+
   // if you want to receive a controlEvent when
   // a  tab is clicked, use activeEvent(true)
-  
+
   cp5.getTab("default")
      .activateEvent(true)
      .setLabel("Simulation")
      .setId(1)
      ;
-     
-     //authors tab 
+
+     //authors tab
      cp5.addTab("authors")
      .setColorBackground(color(220, 200, 20))
      .setColorLabel(color(255))
      .setColorActive(color(255,128,0))
      ;
-     
+
      cp5.getTab("authors")
      .activateEvent(true)
      .setLabel("Authors")
      .setId(1)
      ;
-     
-     //exit tab 
+
+     //exit tab
      cp5.addTab("exit")
      .setColorBackground(color(255, 0, 0))
      .setColorLabel(color(255))
      .setColorActive(color(255,128,0))
      ;
-     
+
      cp5.getTab("exit")
      .activateEvent(true)
      .setLabel("exit")
      .setId(1)
      ;
 
-  // create a few controllers
-  
   knobM1 = cp5.addKnob("m1")
                .setRange(1,25)
                .setValue(2)
@@ -85,8 +83,8 @@ void setup() {
                .setColorBackground(colorM)
                .setDragDirection(Knob.HORIZONTAL)
                ;
-               
-               
+
+
   knobM2 = cp5.addKnob("m2")
                .setRange(1,25)
                .setValue(2)
@@ -95,8 +93,8 @@ void setup() {
                .setColorBackground(colorM)
                .setDragDirection(Knob.HORIZONTAL)
                ;
-               
-               
+
+
   knobL1 = cp5.addKnob("l1")
                .setRange(1,25)
                .setValue(5)
@@ -105,8 +103,8 @@ void setup() {
                .setColorBackground(colorL)
                .setDragDirection(Knob.HORIZONTAL)
                ;
-               
-               
+
+
   knobL2 = cp5.addKnob("l2")
                .setRange(1,25)
                .setValue(5)
@@ -115,8 +113,8 @@ void setup() {
                .setColorBackground(colorL)
                .setDragDirection(Knob.HORIZONTAL)
                ;
-               
-               
+
+
   knobG = cp5.addKnob("g")
                .setRange(1,20)
                .setValue(9.81)
@@ -125,7 +123,7 @@ void setup() {
                .setColorBackground(color(5, 75, 10))
                .setDragDirection(Knob.HORIZONTAL)
                ;
-               
+
   cp5.addToggle("disco")
      .setPosition(xPos+20, yPos1 + 5.2*factorPos)
      .setSize(50,20)
@@ -134,8 +132,8 @@ void setup() {
      .setMode(ControlP5.SWITCH)
      ;
 
-               
-               
+
+
   cp5.addButton("start")
      .setBroadcast(false)
      .setPosition(xPos - 40, 720)
@@ -145,7 +143,7 @@ void setup() {
      .setBroadcast(true)
      .getCaptionLabel().align(CENTER,CENTER)
      ;
-  
+
   cp5.addButton("stopButton")
      .setBroadcast(false)
      .setLabel("stop")
@@ -156,43 +154,43 @@ void setup() {
      .setBroadcast(true)
      .getCaptionLabel().align(CENTER,CENTER)
      ;
-     
-       
+
+
   //authors tab
-  
+
   authorsLabel = cp5.addTextlabel("authorsLabel")
                     .setText("Authors:")
                     .setPosition(width/2, height/2)
                     .setHeight(20)
                     ;
-                    
+
   authorsNames = cp5.addTextlabel("authorsNames")
                     .setText("Borys Pachocki & Franciszek Mirecki")
                     .setPosition(width/2, height/2 + 20)
                     ;
-     
-  
+
+
   // arrange controller in separate tabs
-  
+
   cp5.getController("authorsLabel").moveTo("authors");
   cp5.getController("authorsNames").moveTo("authors");
 
-  
-  // Tab 'global' is a tab that lies on top of any 
+
+  // Tab 'global' is a tab that lies on top of any
   // other tab and is always visible
-  
+
   cp5.setAutoDraw(false);
 }
 void draw() {
 
   background(51);
   authorsLabel.draw(this);
- 
+
   // makes the gui stay on top of elements
   // drawn before.
- 
+
   gui();
-  
+
 }
 
 void gui() {
@@ -204,11 +202,11 @@ void gui() {
 }
 
 void controlEvent(ControlEvent theControlEvent) {
- 
+
   if (theControlEvent.isTab()) {
     println("got an event from tab : "+theControlEvent.getTab().getName()+" with id "+theControlEvent.getTab().getId());
   }
-  
+
   if (theControlEvent.getTab().getName() == "exit") {
     exit();
   }
