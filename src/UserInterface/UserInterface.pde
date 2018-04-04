@@ -18,7 +18,7 @@ float xPos = 1120;
 float yPos1 = 40;
 float factorPos = 120;
 
-int colorM = color(255, 30, 30);
+int colorM = color(255, 30, 0);
 int colorL = color(255, 155, 0);
 
 //int buttonValue = 1;
