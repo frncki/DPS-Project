@@ -134,8 +134,9 @@ void setup() {
 
 
 
-  cp5.addButton("start")
+  cp5.addButton("startButton")
      .setBroadcast(false)
+     .setLabel("start")
      .setPosition(xPos - 40, 720)
      .setSize(80,30)
      .setColorBackground(color(70, 100, 225))
