@@ -5,30 +5,31 @@ class Pendulum {
 
   PVector pos;
   float m, l, r, theta, phi;
+  float omega;
   color c;
   
-  Pendulum(boolean which, float m, float l, float theta, float phi, color c) {
+  Pendulum( float m, float l, float theta, float phi, color c) {
     this. m = m;
     this.l = l;
-    this.theta = theta;
-    this.phi = phi;
+    this.theta = radians(theta);
+    this.phi = radians(phi);
     this.pos = new PVector();
-    if(which) {
-      this.pos.x = l * cos(phi) * sin(theta);
-      this.pos.y = l * sin(phi) * sin(theta);
-      this.pos.z = l * cos(theta);
-    }
     this.r = sigmoid(m);
     this.c = c;
   }
   
-  PVector getPos() {return pos;}
   
-  void setSecondPos(PVector firstPos) {
-    this.pos.x = firstPos.x + l * cos(phi) * sin(theta);
-    this.pos.y = firstPos.y + l * sin(phi) * sin(theta);
-    this.pos.z = firstPos.z + l * cos(theta);
-    println(l);
+  
+  void setPos(boolean which, PVector firstPos) {
+    if(which) {
+      this.pos.x = l * cos(phi) * sin(theta);
+      this.pos.y = l * sin(phi) * sin(theta);
+      this.pos.z = l * cos(theta);
+    } else {
+      this.pos.x = firstPos.x + l * cos(phi) * sin(theta);
+      this.pos.y = firstPos.y + l * sin(phi) * sin(theta);
+      this.pos.z = firstPos.z + l * cos(theta);
+    }
   }
   
   void show() {
@@ -41,7 +42,21 @@ class Pendulum {
     sphere(r);
   }
   
-  float sigmoid(float x) { //transformed sigmoid
-    return 10 / (1 + exp(3.4 - x));
+  void move(boolean which, float m2, float l2, float theta2, float phi2) {
+    if(which) {
+     // this.theta += 0.01;
+      this.phi += -0.02;
+    } else {
+      this.theta += -0.02;
+      this.phi += 0.2;
+    }
   }
+  
+  float sigmoid(float x) {return 10 / (1 + exp(3.4 - x));} //transformed sigmoid
+  
+  PVector getPos() {return pos;}
+  float getM() {return m;}
+  float getTheta() {return theta;}
+  float getPhi() {return phi;}
+  float getL() {return l;}
 }
