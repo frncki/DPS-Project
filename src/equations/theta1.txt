@@ -4,5 +4,10 @@ ddtheta1 = (4 * (g * (4 * this.m + 3 * m2 + 2 * m2 * cos(2 * theta2) * cos(this.
 + cos(this.theta) * cos(this.phi - phi2) * sin(theta2)) * dtheta2 * dtheta2 + ((2 * this.m + m2 - m2 * cos(2 * theta2)) * sin(2 * this.theta)
 - 2 * m2 * cos(this.phi - phi2) * sin(this.theta) * sin(this.theta) * sin(2 * theta2)) * this.dphi * this.dphi + 4 * m2 * sin(theta2) * sin(theta2) * (-cos(theta2) * sin(this.theta)
 + cos(this.theta) * cos(this.phi - phi2) * sin(theta2)) * dphi2 * dphi2)))
-/(r * (2 * (8 * this.m + 5 * m2) - m2 * (2 * cos(2 * this.theta) + 3 * cos(2 * (this.theta - theta2)) + 2 * cos(2 * theta2)
-+ 3 * cos(2 * (this.theta + theta2)) + 8 * cos(2 * (this.phi - phi2)) * sin(this.theta) * sin(this.theta) * sin(theta2) * sin(theta2) + 8 * cos(this.phi - phi2) * sin(2 * this.theta) * sin(2 * theta2))))
+
+/
+
+(
+2 * r * (8 * this.m + 5 * m2) - m2 * (2 * cos(2 * this.theta) + 3 * cos(2 * (this.theta - theta2)) + 2 * cos(2 * theta2)
++ 3 * cos(2 * (this.theta + theta2)) + 8 * cos(2 * (this.phi - phi2)) * sin(this.theta) * sin(this.theta) * sin(theta2) * sin(theta2) + 8 * cos(this.phi - phi2) * sin(2 * this.theta) * sin(2 * theta2))
+)
