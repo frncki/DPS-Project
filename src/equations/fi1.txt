@@ -1,0 +1,8 @@
+ddphi1 = (2 * (2 * m2 * l  * (1/sin(theta1)^2) * ((1/tan(theta1)) * sin(2 * theta2) * sin(phi1 - phi2) + sin(theta2)^2 * sin(2 * (phi1 - phi2))) * dtheta1^2 
++ l * (1/tan(theta1)) * (m2 + 8 * m1 * (1/sin(theta1)^2) - m2 * ((1/tan(theta1)^2) - 5 * (1/sin(theta1)^2) + cos(2 * theta2) * (-6 + 4 * (1/sin(theta1)^2)) 
++ 4 * cos(2 * (phi1 - phi2)) * sin(theta2)^2 + 8 * cos(phi1 - phi2) * (1/sin(theta1)) * sin(2 * theta2))) * dtheta1 * dphi1 
++ 2 * m2 (2 * l * (1/sin(theta1)^3) * sin(theta2) * sin(phi1 - phi2) * dtheta2^2 - ((1/tan(theta1)) * sin(2*theta2) * sin(phi1 - phi2) 
++ sin(theta2)^2 * sin(2 * (phi1 - phi2))) * (g * (1/tan(theta1)) * (1/sin(theta1)) - l * dphi1^2) 
++ 2 * l * (1/sin(theta1)^3) * sin(theta2)^3 * sin(phi1 - phi2) * dphi2^2)))
+/(l * (-m2 - 8 * m1 * (1/sin(theta1)^2) + m2 * ((1/tan(theta1)^2) - 5 * (1/sin(theta1)^2) + cos(2 * theta2) * (-6 + 4 * (1/sin(theta1)^2)) 
++ 4 * cos(2 * (phi1 - phi2)) * sin(theta2)^2 + 8 * cos(phi1 - phi2) * (1/tan(theta1)) * sin(2 * theta2))))

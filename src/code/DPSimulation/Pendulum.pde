@@ -5,7 +5,7 @@ class Pendulum {
 
   PVector pos;
   float m, l, r, theta, phi;
-  float omega;
+  float dtheta, dphi, ddtheta, ddphi;
   color c;
   
   Pendulum( float m, float l, float theta, float phi, color c) {
