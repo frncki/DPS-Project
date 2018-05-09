@@ -42,7 +42,7 @@ class Pendulum {
     sphere(r);
   }
   
-  void move(boolean which, float m2, float l2, float theta2, float phi2) {
+  void move(boolean which, float m2, float theta2, float phi2, float g) {
     if(which) {
      // this.theta += 0.01;
       this.phi += -0.02;

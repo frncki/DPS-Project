@@ -43,9 +43,9 @@ void draw() {
   p2.setPos(!first, p1.getPos());
   
   p1.show();
-  p1.move(first, p2.getM(), p2.getL(), p2.getTheta(), p2.getPhi());
+  p1.move(first, p2.getM(), p2.getTheta(), p2.getPhi());
   
-  p2.move(!first, p1.getM(), p1.getL(), p1.getTheta(), p1.getPhi());
+  p2.move(!first, p1.getM(), p1.getTheta(), p1.getPhi());
   p2.show();
   
 }
