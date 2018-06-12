@@ -4,3 +4,21 @@
 src/code/demo/MainClass/
 
 src/code/UserInterface/
+
+src/code/DPSimulation/application\.linux-arm64/
+
+src/code/DPSimulation/application\.linux-armv6hf/
+
+src/code/DPSimulation/application\.linux32/
+
+src/code/DPSimulation/application\.linux64/
+
+src/code/DPSimulation/application\.macosx/
+
+src/code/DPSimulation/application\.windows32/
+
+src/code/DPSimulation/application\.windows64/
+
+src/equations/fi1_wersjarobocza\.txt
+
+src/equations/theta1_wersjarobocza\.txt
