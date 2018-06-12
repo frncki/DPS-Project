@@ -3,7 +3,6 @@
 
 import controlP5.*;
 
-
 //user interface variables
 Knob knobM1;
 Knob knobM2;
@@ -19,12 +18,12 @@ Textlabel authorsNames;
 
 float xPos = 1120;
 float yPos1 = 40;
-float factorPos = 120;
+float factorPos = 150;
 
 int colorM = color(255, 30, 30);
 int colorL = color(255, 155, 0);
 
-//int buttonValue = 1;
+PFont pixelFont;
 
 void setupUI(ControlP5 cp5) {
   
@@ -93,8 +92,8 @@ void setupUI(ControlP5 cp5) {
 
   knobTheta1 = cp5.addKnob("theta1")
                .setRange(-90, 90)
-               .setValue(0)
-               .setPosition(xPos, yPos1 + 2*factorPos)
+               .setValue(degrees(PI/3))
+               .setPosition(xPos, yPos1 + 2 * factorPos)
                .setRadius(50)
                .setColorBackground(colorL)
                .setDragDirection(Knob.HORIZONTAL)
@@ -104,27 +103,16 @@ void setupUI(ControlP5 cp5) {
 
   knobTheta2 = cp5.addKnob("theta2")
                .setRange(-90, 90)
-               .setValue(0)
-               .setPosition(xPos, yPos1 + 3*factorPos)
+               .setValue(degrees(PI/2))
+               .setPosition(xPos, yPos1 + 3 * factorPos)
                .setRadius(50)
                .setColorBackground(colorL)
                .setDragDirection(Knob.HORIZONTAL)
                .setId(7)
                ;
 
-
-  knobG = cp5.addKnob("g")
-               .setRange(1,20)
-               .setValue(9.81)
-               .setPosition(xPos, yPos1 + 4*factorPos)
-               .setRadius(50)
-               .setColorBackground(color(5, 75, 10))
-               .setDragDirection(Knob.HORIZONTAL)
-               .setId(8)
-               ;
-
   cp5.addToggle("disco")
-     .setPosition(xPos+20, yPos1 + 5.2*factorPos)
+     .setPosition(xPos+20, yPos1 + 4.1 * factorPos)
      .setLabel("disco")
      .setSize(50,20)
      .setValue(false)
@@ -151,7 +139,7 @@ startButton = new Button(cp5, "startButton");
      .setLabel("reset")
      .setPosition(xPos + 60, 720)
      .setSize(80,30)
-     .setColorBackground(color(255, 65, 0))
+     .setColorBackground(color(5, 105, 10))
      .setValue(2)
      .setBroadcast(true)
      .getCaptionLabel().align(CENTER,CENTER)
@@ -159,25 +147,27 @@ startButton = new Button(cp5, "startButton");
 
 
   //authors tab
-
+  pixelFont = createFont("VT323-Regular", 32);
+  
   authorsLabel = cp5.addTextlabel("authorsLabel")
-                    .setText("Authors:")
-                    .setPosition(width/2, height/2)
-                    .setHeight(20)
+                    .setText("Made by:")
+                    .setFont(createFont("VT323-Regular",36))
                     ;
+
+  int aLabelWidth = authorsLabel.getWidth();
+  authorsLabel.setPosition(width/2 - aLabelWidth, height/2 - 30);
 
   authorsNames = cp5.addTextlabel("authorsNames")
                     .setText("Borys Pachocki & Franciszek Mirecki")
-                    .setPosition(width/2, height/2 + 20)
+                    .setFont(createFont("VT323-Regular",36))
                     ;
-
-
-  // arrange controller in separate tabs
-
+                    
+  int nLabelWidth = authorsNames.getWidth();
+  authorsNames.setPosition(width/2 - nLabelWidth, height/2);
+  
   cp5.getController("authorsLabel").moveTo("authors");
   cp5.getController("authorsNames").moveTo("authors");
-
-
+                    
   // Tab 'global' is a tab that lies on top of any
   // other tab and is always visible
 
@@ -192,16 +182,25 @@ void gui() {
   hint(ENABLE_DEPTH_TEST);
 }
 
+void animateLabel(Textlabel label, int ii) {
+  label.setColor(colors.get((int)ii));
+  ii += 0.3;
+  if(ii > 4) ii = 0;
+}
+
 void controlEvent(ControlEvent theControlEvent) {
 
   if (theControlEvent.isTab()) {
     println("got an event from tab : " + theControlEvent.getTab().getName() + " with id " + theControlEvent.getTab().getId());
+    
     if (theControlEvent.getTab().getName() == "exit") {
      exit();
     }
+    
     if (theControlEvent.getTab().getName() == "default") {
      visible = true;
     }
+    
     if (theControlEvent.getTab().getName() == "authors") {
      visible = false;
      bg = 51;
@@ -219,11 +218,11 @@ void controlEvent(ControlEvent theControlEvent) {
   }
   
   if(theControlEvent.getId() == 6) { //theta
-    p1.setTheta(radians(knobTheta1.getValue()));
+    p1.setTheta(knobTheta1.getValue());
   }
   
   if(theControlEvent.getId() == 7) { //phi
-    p2.setTheta(radians(knobTheta2.getValue()));
+    p2.setTheta(knobTheta2.getValue());
   }
   
   if(theControlEvent.getId() == 8) { //g
@@ -243,9 +242,12 @@ void controlEvent(ControlEvent theControlEvent) {
     if(!moving) {
       moving = true;
       startButton.setLabel("stop");
+      startButton.setColorBackground(color(235,0,0));
     } else {
       moving = false;
       startButton.setLabel("start");
+      startButton.setColorBackground(color(70, 100, 225));
+
     }
   }
   
@@ -259,8 +261,13 @@ void button(float theValue) {
 }
 
 void keyPressed() {
-  
   if(keyCode == TAB) {
-    cp5.getTab("authors").bringToFront();
+    if(visible) {
+      cp5.getTab("authors").bringToFront();
+      visible = false;
+    } else {
+      cp5.getTab("default").bringToFront();
+      visible = true;
+    }
   }
 }
